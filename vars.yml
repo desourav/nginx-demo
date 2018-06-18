@@ -1,0 +1,7 @@
+image: centos
+name: myweb4
+src_port: 8080
+dest_port: 80
+src_vol: /tmp/test
+dest_vol: /tmp
+privileged: true
