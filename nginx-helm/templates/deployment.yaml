@@ -1,0 +1,25 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: nginx
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: nginx
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 80
+
