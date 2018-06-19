@@ -1,0 +1,7 @@
+image: @image@
+name: @container@
+src_port: 8080
+dest_port: 80
+src_vol: /var/html
+dest_vol: /var/www/html 
+privileged: true

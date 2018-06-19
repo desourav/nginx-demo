@@ -6,43 +6,54 @@
   tasks:
     - name: include variables
       include_vars: base_vars.yml
+
     - name: Install python-docker on Red Hat based distribution
       yum:
        name: python-docker
        enablerepo: extras
        state: latest
       when: ansible_os_family == 'RedHat'
+
     - name: Install python-docker  on Debian based distribution
       apt: 
         name: python-docker
         update_cache: yes
       when: ansible_os_family == 'Debian' 
+
     - name: Create Container
       docker_container:
         name: "{{ name }}"
         image: "{{ image }}"
         state: started
         command: ["sleep", "infinity"]
+        privileged: "{{ privileged }}"
+
     - name: Check container type CentOS
       command: '/bin/sh check_OS.sh "{{ name }}"'
       register: resultCentOS 
       ignore_errors: True
+
     - name: CentOS Install epel-release
       command: docker exec "{{ name }}" bash -l -c 'yum install epel-release -y'
       when: resultCentOS is succeeded
+
     - name: CentOS Install nginx
       command: docker exec "{{ name }}" bash -l -c 'yum install nginx -y'
       when: resultCentOS is succeeded
+
     - name: Check container type Debian
       command: '/bin/sh check_OS_debian.sh "{{ name }}"'
       register: resultDebian
       ignore_errors: True
+
     - name: Debian apt-get update
       command: docker exec "{{ name }}" bash -l -c 'apt-get update'
       when: resultDebian is succeeded
+
     - name: Debian apt-get upgrade
       command: docker exec "{{ name }}" bash -l -c 'apt-get upgrade -y'
       when: resultDebian is succeeded
+
     - name: Debian Install nginx
       command: docker exec "{{ name }}" bash -l -c 'apt-get install nginx -y'
       when: resultDebian is succeeded
