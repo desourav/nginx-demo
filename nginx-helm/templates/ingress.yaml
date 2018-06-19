@@ -7,5 +7,6 @@ metadata:
   annotations:
     http.port: "443"
 spec:
-  serviceName: nginx
-  servicePort: 80
+  backend:
+    serviceName: nginx
+    servicePort: 80
