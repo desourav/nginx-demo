@@ -1,10 +1,14 @@
 #!/bin/sh
 # Argument 1 - image name
 # Argument 2 - container name
+# Argument 3 - Save Image or Not
 # Usage `sh deploy.sh centos myweb`
 
-image=$1
-container=$2
+echo "Enter the image name [centos|debian]"
+read image
+
+echo "Enter the container name"
+read container
 
 PATH=$PATH:/var/root/Library/Python/2.7/bin/
 ansible --version
@@ -22,8 +26,8 @@ cp base_vars.yml.orig base_vars.yml
 sed -i -e "s/@image@/${image}/g" base_vars.yml
 sed -i -e "s/@container@/${container}/g" base_vars.yml
 
-echo "Image Name - $1"
-echo "Container Name - $2"
+echo "Image Name - ${image}"
+echo "Container Name - ${container}"
 
 # Run the playbook
 ansible-playbook base.yaml
