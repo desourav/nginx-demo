@@ -11,7 +11,8 @@
 3. The ansible-playbook is designed to install nginx on a CentOS or Debian container
 4. If you wish to save the image, please run `docker commit <commit-id> <image-name>`
 
-```sh-3.2# cd /Users/souravde/Downloads/nginx-demo/
+```
+sh-3.2# cd /Users/souravde/Downloads/nginx-demo/
 sh-3.2# sh deploy.sh
 Enter the image name [centos|debian]
 centos
@@ -25,7 +26,7 @@ ansible 2.5.5
   python version = 2.7.10 (default, Oct  6 2017, 22:29:07) [GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.31)]
 Ansible seems to be installed just fine....
 Image Name - centos
-Container Name - centos-nginx-demo```
+Container Name - centos-nginx-demo
 
 PLAY [Create Docker Container] ***************************************************************************************************************************************************************************
 
@@ -67,8 +68,8 @@ TASK [Debian Install nginx] ****************************************************
 skipping: [localhost]
 
 PLAY RECAP ***********************************************************************************************************************************************************************************************
-localhost                  : ok=7    changed=5    unreachable=0    failed=0   
-
+localhost                  : ok=7    changed=5    unreachable=0    failed=0
+```
 
 # How to run the helm chart for nginx.
 ## Assumptions :
