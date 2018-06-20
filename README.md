@@ -23,6 +23,7 @@ docker exec -it <container-name> /bin/bash
 ### Inside Container : 
 ```
 /usr/bin/ansible-playbook /tmp/main.yaml
+/usr/sbin/nginx
  ```
 
 # How to run the ansible playbook (no roles) for installing nginx in CentOS or Debian container
