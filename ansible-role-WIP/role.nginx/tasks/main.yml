@@ -41,5 +41,5 @@
   notify:
     - reload nginx
 
-- name: Ensure nginx is started and enabled to start at boot.
-  service: name=nginx state=started enabled=yes
+#- name: Ensure nginx is started and enabled to start at boot.
+#  service: name=nginx state=started enabled=yes

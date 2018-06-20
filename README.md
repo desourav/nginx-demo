@@ -1,4 +1,31 @@
-# How to run the ansible playbook for installing nginx in CentOS or Debian container
+# Install nginx in CentOS/Debian container using ansible role
+## Usage :
+*Build the images for centos and debian with ansible installed*
+```
+cd ~/nginx-demo/ansible-role-WIP/centos-Dockerfile
+docker build -t centos-ansible .
+cd ~/nginx-demo/ansible-role-WIP/debian-Dockerfile
+docker build -t debian-ansible .
+```
+*Build the containers using images *
+```
+docker run -td centos-ansible 
+docker run -td debian-ansible
+docker ps
+```
+*Copy the artifacts to the container*
+```
+docker cp main.yaml <container-id>:/tmp
+docker cp role.nginx/ <container-id>:/tmp
+docker cp env/ <container-id>:/tmp
+docker exec -it <container-name> /bin/bash
+```
+### Inside Container : 
+```
+/usr/bin/ansible-playbook /tmp/main.yaml
+ ```
+
+# How to run the ansible playbook (no roles) for installing nginx in CentOS or Debian container
 ## Assumptions :
 1. Ansible is installed
 2. Python 2.7 is installed (please change the location in deploy.sh for ansible PATH)
@@ -113,30 +140,5 @@ nginx-9649d8bc6-czvdt   1/1       Running   0          32s
 nginx-9649d8bc6-njkb6   1/1       Running   0          32s
 ```
 
-# Work in progress : install nginx in container using role
-## Usage :
-```
-docker pull ansible/centos7-ansible
-docker run -td ansible/centos7-ansible 
-docker ps
-docker cp main.yaml <container-id>:/tmp
-docker cp role.nginx/ <container-id>:/tmp
-docker cp env/ <container-id>:/tmp
-docker exec -it <container-name> /bin/bash
-```
-### Inside Container : 
-```
-cat /etc/ansible/hosts 
-127.0.0.1 ansible_connection=local
 
-/opt/ansible/ansible/bin/ansible-playbook main.yaml
-cat /etc/ansible/hosts 
-127.0.0.1 ansible_connection=local
- /usr/bin/ansible-playbook /tmp/main.yaml
- ```
-## Progress :
-1. nginx role is in place
-2. ansible container is in place for CentOS
-## Blocker :
-1. unable to run the same in a container with ansible installed
 
