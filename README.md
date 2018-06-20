@@ -114,6 +114,28 @@ nginx-9649d8bc6-njkb6   1/1       Running   0          32s
 ```
 
 # Work in progress : install nginx in container using role
+## Usage :
+```
+docker build -t ansible-playbook .
+docker run -td ansible-playbook
+docker ps
+docker cp main.yaml <container-id>:/tmp
+docker cp role.nginx/ <container-id>:/tmp
+docker cp env/ <container-id>:/tmp
+docker exec -it <container-name> /bin/bash
+```
+### Inside Container : 
+```
+/usr/bin/ansible --version
+ansible 2.5.0
+  config file = None
+  configured module search path = [u'/ansible/library']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.14 (default, Dec 14 2017, 15:51:29) [GCC 6.4.0]
+
+ /usr/bin/ansible-playbook /tmp/main.yaml
+ ```
 ## Progress :
 1. nginx role is in place
 2. ansible container is in place for CentOS

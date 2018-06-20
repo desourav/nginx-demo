@@ -1,4 +1,4 @@
-image: centos
+image: debian
 name: @container@
 src_port: 8080
 dest_port: 80
