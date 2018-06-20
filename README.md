@@ -110,5 +110,13 @@ souravs-mbp:nginx-demo souravde$ kubectl get pods
 NAME                    READY     STATUS    RESTARTS   AGE
 nginx-9649d8bc6-bmzdd   1/1       Running   0          32s
 nginx-9649d8bc6-czvdt   1/1       Running   0          32s
-nginx-9649d8bc6-njkb6   1/1       Running   0          32s```
+nginx-9649d8bc6-njkb6   1/1       Running   0          32s
+```
+
+# Work in progress : install nginx in container using role
+## Progress :
+1. nginx role is in place
+2. ansible container is in place for CentOS
+## Blocker :
+1. unable to run the same in a container with ansible installed
 
