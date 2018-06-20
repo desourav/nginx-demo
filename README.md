@@ -116,8 +116,8 @@ nginx-9649d8bc6-njkb6   1/1       Running   0          32s
 # Work in progress : install nginx in container using role
 ## Usage :
 ```
-docker build -t ansible-playbook .
-docker run -td ansible-playbook
+docker pull ansible/centos7-ansible
+docker run -td ansible/centos7-ansible 
 docker ps
 docker cp main.yaml <container-id>:/tmp
 docker cp role.nginx/ <container-id>:/tmp
