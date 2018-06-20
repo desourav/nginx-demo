@@ -126,14 +126,12 @@ docker exec -it <container-name> /bin/bash
 ```
 ### Inside Container : 
 ```
-/usr/bin/ansible --version
-ansible 2.5.0
-  config file = None
-  configured module search path = [u'/ansible/library']
-  ansible python module location = /usr/lib/python2.7/site-packages/ansible
-  executable location = /usr/bin/ansible
-  python version = 2.7.14 (default, Dec 14 2017, 15:51:29) [GCC 6.4.0]
+cat /etc/ansible/hosts 
+127.0.0.1 ansible_connection=local
 
+/opt/ansible/ansible/bin/ansible-playbook main.yaml
+cat /etc/ansible/hosts 
+127.0.0.1 ansible_connection=local
  /usr/bin/ansible-playbook /tmp/main.yaml
  ```
 ## Progress :
